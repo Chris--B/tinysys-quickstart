@@ -1,5 +1,5 @@
 [package]
-name = "app"
+name = "{{project-name}}"
 version = "0.1.0"
 edition = "2024"
 
@@ -16,7 +16,7 @@ embedded-graphics = "0.8"
 micromath = "2" # Recommended if using floats
 
 [[bin]]
-name = "app"
+name = "{{project-name}}"
 path = "src/main.rs"
 test = false
 doctest = false
