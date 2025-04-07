@@ -1,0 +1,15 @@
+[env]
+# These env variables control the behavior of `copy_to_sdcard.sh`.
+# These are set to the defaults from the script, and can be 
+# overridden here or while running `cargo run`.
+# TINYSYS_ROOT="../tinysys"
+# TINYSYS_SDCARD="../tinysys/software/emulator/sdcard"
+
+[target.riscv32im-unknown-none-elf]
+runner = ["./copy_to_sdcard.sh"]
+rustflags = [
+    "-C", "target-feature=+zicsr,+zifencei,+zfinx",
+]
+
+[build]
+target = "riscv32im-unknown-none-elf"
