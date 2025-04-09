@@ -15,7 +15,7 @@ const WIDTH: u32 = 320;
 const HEIGHT: u32 = 240;
 
 /// App entry point
-fn main() -> ! {
+fn main() {
     unsafe {
         let mut video_context = EVideoContext {
             m_vmode: EVideoMode_EVM_320_Wide,
@@ -91,5 +91,7 @@ pub extern "C" fn _start() -> ! {
         }
     }
 
-    main()
+    main();
+
+    tinysys_rs::exit(0);
 }
