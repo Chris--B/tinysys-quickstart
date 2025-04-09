@@ -8,6 +8,7 @@ extern crate panic_halt;
 // link against critical section impl
 extern crate riscv;
 
+use tinysys_rs::prelude::*;
 use tinysys_rs::sys::*;
 
 const WIDTH: u32 = 320;
@@ -15,8 +16,6 @@ const HEIGHT: u32 = 240;
 
 /// App entry point
 fn main() -> ! {
-    dbg!("hello world");
-
     unsafe {
         let mut video_context = EVideoContext {
             m_vmode: EVideoMode_EVM_320_Wide,
