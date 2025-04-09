@@ -29,6 +29,21 @@ EOF
     exit 1
 }
 
+# *why*.
+#
+# Sometimes, instead of getting args like:
+#       ["foo/bar/baz/copy_to_sdcard.sh", "target/some/binary"]
+# we get
+#       ["foo/bar/baz/copy_to_sdcard.sh", "copy_to_sdcard.sh", "target/some/binary"]
+#
+# Absolutely no idea why. But no one needs to copy over sh files, so if we see one just skip it.
+if [[ "$1" =~ \.sh$ ]]; then
+    echo -e "\033[1;33m[warn]\033[0m Arg is \".sh\" when it shouldn't be. Replacing:"
+    echo "    - \"$1\""
+    shift;
+    echo "    + \"$1\""
+fi
+
 if [ -d "$TINYSYS_SDCARD" ] ; then
     if [ $# -eq 0 ]; then
         echo "Error: Not given a file to copy to the sdcard (directories are not supported)".
