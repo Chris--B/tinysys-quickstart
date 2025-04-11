@@ -55,17 +55,14 @@ if [ -d "$TINYSYS_SDCARD" ] ; then
     set -e
 
     # Copy the binary we're being given to the sdcard
-    file=$1
-    cp -v $file $TINYSYS_SDCARD
+    file=$(realpath $1)
+    elf="$TINYSYS_SDCARD/$(basename $file).elf"
 
-    # Make sure the filename ends in ".elf" or else the emulator won't run it
-    if [[ "$file" != *.elf ]]; then
-        pushd $TINYSYS_SDCARD > /dev/null
-        echo "+ cd $TINYSYS_SDCARD"
-        elf=$(basename "$file")
-        mv -v "./$elf" "./$elf.elf"
-    fi
+    echo "Copying:"
+    echo "  from: $file"
+    echo "  to:   $elf"
 
+    cp -v $file $elf > /dev/null
 
     exit 0
 else
